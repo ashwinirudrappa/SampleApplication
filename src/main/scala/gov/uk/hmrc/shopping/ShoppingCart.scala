@@ -5,13 +5,15 @@ package gov.uk.hmrc.shopping
   */
 object ShoppingCart {
 
-  val fruitPrice = Map("Apple" -> 0.6, "Orange" -> 0.25)
+  val fruitPrice = Map("Apple" -> 0.60, "Orange" -> 0.25)
 
-  def totalCost(items: Seq[String], onOffer: Boolean):BigDecimal = {
+  def totalCost(items: Seq[String], onOffer: Boolean): BigDecimal = {
     val (apples, oranges) = items.partition(_ == "Apple")
     onOffer match {
       case true => {
-        0.0
+        val applesCost = BigDecimal(fruitPrice("Apple")) * (apples.size / 2)
+        val orangesCost = fruitPrice("Orange") * ((oranges.size / 3) * 2)
+        applesCost + orangesCost
       }
       case false => {
         val applesCost = fruitPrice("Apple") * apples.size
@@ -21,12 +23,4 @@ object ShoppingCart {
     }
 
   }
-
-
-
-
-
-
-
-
 }

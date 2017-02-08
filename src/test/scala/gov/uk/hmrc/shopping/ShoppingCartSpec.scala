@@ -22,6 +22,18 @@ class ShoppingCartSpec extends FlatSpec with Matchers {
   "ShoppingCart" should "calculate total cost of fruits when there is an offer for apple and orange" in {
     val items = Seq("Apple", "Apple", "Apple", "Apple", "Orange", "Orange","Orange")
     val onOffer = true
+    ShoppingCart.totalCost(items, onOffer) should be(1.7)
+  }
+
+  "ShoppingCart" should "calculate total cost of fruits when there is an oranges" in {
+    val items = Seq("Orange", "Orange", "Orange", "Orange", "Orange", "Orange","Orange")
+    val onOffer = true
+    ShoppingCart.totalCost(items, onOffer) should be(1)
+  }
+
+  "ShoppingCart" should "calculate total cost of fruits when there is an offer for apple and customer buys only apples" in {
+    val items = Seq("Apple", "Apple", "Apple", "Apple", "Apple", "Apple","Apple")
+    val onOffer = true
     ShoppingCart.totalCost(items, onOffer) should be(1.8)
   }
 
